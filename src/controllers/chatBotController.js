@@ -226,11 +226,11 @@ const thanks   = firstTrait(message.nlp,'wit$thanks');
 const byebye = firstTrait(message.nlp,'wit$bye');
 
 if (greeting && greeting.confidence > 0.8) {
-  sendResponse('Hi there!');
+  callSendAPI(sender_psid,'Hi there!');
 } else if (thanks && thanks.confidence > 0.8) {
-  sendResponse('Thank you !');
+  callSendAPI(sender_psid,'Thank you !');
 } else if (byebye && byebye.confidence > 0.8) {
-  sendResponse('Bye see you soon !');
+  callSendAPI(sender_psid,'Bye see you soon !');
 } else { 
   // default logic
     // default logic
