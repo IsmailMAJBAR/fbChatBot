@@ -167,15 +167,54 @@ function firstTrait(nlp, name) {
 }
 
 function handleMessage(sender_psid,message) {
-  // check greeting is here and is confident
-  const greeting = firstTrait(message.nlp, 'wit$greetings');
-  if (greeting && greeting.confidence > 0.8) {
-    //sendResponse('Hi there!');
-    callSendAPI(sender_psid,message);
-  } else { 
-    // default logic
-    callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
+
+  if(message && message.attachments && message.attachments[0].payload){
+    callSendAPI(sender_psid,"thank you :)");
+    return;
+
   }
+
+
+  // check greeting is here and is confident
+  let entitiesArr = ["Greetings","Thanks","Bye"];
+  let entityChosen ="";
+  entitiesArr.forEach((name)=>{
+    let entity = firstTrait(message.nlp,name);
+    if(entity && entity.confidence > 0.8 ){
+      entityChosen = name;
+    }
+  });
+
+  if (entityChosen ===""){
+      // send default
+      callSendAPI(sender_psid,'I need more training to understand, try to say "Thanks" or "Hi" to me');
+  }else{
+    if(entityChosen ==="Greetings"){
+      // send greeting message
+      callSendAPI(sender_psid,'hello there');
+    }
+    if (entityChosen ==="Thanks"){
+      callSendAPI(sender_psid,'Thanks :)');
+    }
+     if (entityChosen ==="Bye"){
+      callSendAPI(sender_psid,'Bye Bye');
+    }
+  }
+
+
+
+
+  /** 
+   * const greeting = firstTrait(message.nlp, 'wit$greetings');
+    if (greeting && greeting.confidence > 0.8) {
+      //sendResponse('Hi there!');
+      callSendAPI(sender_psid,message);
+    } else { 
+      // default logic
+      callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
+    } 
+    */
+
 }
 
 module.exports = {
