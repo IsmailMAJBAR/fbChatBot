@@ -221,7 +221,7 @@ if (greeting && greeting.confidence > 0.8) {
   callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
 } 
   */
-const greeting = firstTrait(message.nlp, 'wit$greetings');
+const greeting = firstTrait(message.nlp, 'greetings');
 if (greeting && greeting.confidence > 0.8) {
   //sendResponse('Hi there!');
   callSendAPI(sender_psid,message);
