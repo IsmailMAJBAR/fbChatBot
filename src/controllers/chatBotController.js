@@ -176,7 +176,7 @@ function handleMessage(sender_psid,message) {
 
 
   // check greeting is here and is confident
-  let entitiesArr = ["greetings","thanks","bye"];
+  let entitiesArr = ["wit$greetings","wit$thanks","wit$bye"];
   let entityChosen ="";
   entitiesArr.forEach((name)=>{
     let entity = firstTrait(message.nlp,name);
@@ -189,14 +189,14 @@ function handleMessage(sender_psid,message) {
       // send default
       callSendAPI(sender_psid,'I need more training to understand, try to say "Thanks" or "Hi" to me');
   }else{
-    if(entityChosen ==="greetings"){
+    if(entityChosen ==="wit$greetings"){
       // send greeting message
       callSendAPI(sender_psid,'hello there');
     }
-    if (entityChosen ==="thanks"){
+    if (entityChosen ==="wit$thanks"){
       callSendAPI(sender_psid,'Thanks :)');
     }
-     if (entityChosen ==="bye"){
+     if (entityChosen ==="wit$bye"){
       callSendAPI(sender_psid,'Bye Bye');
     }
   }
