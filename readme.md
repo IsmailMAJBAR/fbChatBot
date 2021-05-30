@@ -12,3 +12,19 @@ Need wit ai to make this happen
 
 licence used in chat bot from this site
 https://app.freeprivacypolicy.com/download/19a26332-be24-409a-ba2e-f49e7c8b25cb
+
+
+useful command
+
+git remote -v to know where the git will push (needeed to make sure there is the origin for github and the heroku for heroku)
+
+heroku run bash to enter to the server that hold the project and see the files from the terminal
+
+heroku login to log the heroku cli
+
+heroku apps to see the heroku apps in the account
+
+heroku git:remote -a nameoftheapp to set the origin in heroku server
+
+to make heroku install npm dependency after the push otherwise it donsn't
+heroku config:set NPM_CONFIG_PROFUCTION = false
