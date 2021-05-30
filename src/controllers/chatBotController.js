@@ -205,24 +205,18 @@ function handleMessage(sender_psid,message) {
   */
 
 const greeting = firstTrait(message.nlp, 'wit$greetings');
-    if (greeting && greeting.confidence > 0.8) {
+const thanks   = firstTrait(message.nlp,'wit$thanks'); 
+const byebye = firstTrait(message.nlp,'wit$bye');
+
+
+if (greeting && greeting.confidence > 0.8) {
       //sendResponse('Hi there!');
       callSendAPI(sender_psid,message);
-    } else { 
-      // default logic
-      callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
-    } 
- const thanks = firstTrait(message.nlp,'wit$thanks');
- if (thanks && thanks.confidence > 0.8) {
-  callSendAPI(sender_psid,message);
-} else { 
-  // default logic
-  callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
-} 
-const byebye = firstTrait(message.nlp,'wit$bye');
- if (byebye && byebye.confidence > 0.8) {
-  callSendAPI(sender_psid,message);
-} else { 
+    } else if (thanks && thanks.confidence > 0.8) {
+      callSendAPI(sender_psid,message);
+    } else if (byebye && byebye.confidence > 0.8) {
+     callSendAPI(sender_psid,message);
+   }  else { 
   // default logic
   callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
 } 
