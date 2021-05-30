@@ -189,14 +189,14 @@ function handleMessage(sender_psid,message) {
       // send default
       callSendAPI(sender_psid,'I need more training to understand, try to say "Thanks" or "Hi" to me');
   }else{
-    if(entityChosen ==="wit$greetings"){
+    if(entityChosen ==="greetings"){
       // send greeting message
       callSendAPI(sender_psid,'hello there');
     }
-    if (entityChosen ==="wit$thanks"){
+    if (entityChosen ==="thanks"){
       callSendAPI(sender_psid,'Thanks :)');
     }
-     if (entityChosen ==="wit$bye"){
+     if (entityChosen ==="bye"){
       callSendAPI(sender_psid,'Bye Bye');
     }
   }
