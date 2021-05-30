@@ -221,11 +221,18 @@ if (greeting && greeting.confidence > 0.8) {
   callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
 } 
   */
-const greeting = firstTrait(message.nlp, 'greetings');
+const greeting = firstTrait(message.nlp, 'wit$greetings');
+const thanks   = firstTrait(message.nlp,'wit$thanks'); 
+const byebye = firstTrait(message.nlp,'wit$bye');
+
 if (greeting && greeting.confidence > 0.8) {
-  //sendResponse('Hi there!');
-  callSendAPI(sender_psid,message);
-  }else { 
+  sendResponse('Hi there!');
+} else if (thanks && thanks.confidence > 0.8) {
+  sendResponse('Thank you !');
+} else if (byebye && byebye.confidence > 0.8) {
+  sendResponse('Bye see you soon !');
+} else { 
+  // default logic
     // default logic
     callSendAPI(sender_psid,`Im sorry, can't reply to that`);
   } 
