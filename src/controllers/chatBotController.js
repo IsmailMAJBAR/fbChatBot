@@ -168,6 +168,8 @@ function firstTrait(nlp, name) {
 
 function handleMessage(sender_psid,message) {
 
+  
+  /*
   if(message && message.attachments && message.attachments[0].payload){
     callSendAPI(sender_psid,"thank you :)");
     return;
@@ -200,12 +202,9 @@ function handleMessage(sender_psid,message) {
       callSendAPI(sender_psid,'Bye Bye');
     }
   }
+  */
 
-
-
-
-  /** 
-   * const greeting = firstTrait(message.nlp, 'wit$greetings');
+const greeting = firstTrait(message.nlp, 'wit$greetings');
     if (greeting && greeting.confidence > 0.8) {
       //sendResponse('Hi there!');
       callSendAPI(sender_psid,message);
@@ -213,7 +212,21 @@ function handleMessage(sender_psid,message) {
       // default logic
       callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
     } 
-    */
+ const thanks = firstTrait(message.nlp,'wit$thanks');
+ if (thanks && thanks.confidence > 0.8) {
+  callSendAPI(sender_psid,message);
+} else { 
+  // default logic
+  callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
+} 
+const byebye = firstTrait(message.nlp,'wit$bye');
+ if (byebye && byebye.confidence > 0.8) {
+  callSendAPI(sender_psid,message);
+} else { 
+  // default logic
+  callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
+} 
+
 
 }
 
