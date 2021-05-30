@@ -70,7 +70,9 @@ let getWebhok = (req, res) => {
 
 
 // Handles messages events
-function handleMessage(sender_psid, received_message) {
+//only reply the message that have been sent
+/**
+ * function handleMessage(sender_psid, received_message) {
 
     let response;
 
@@ -115,7 +117,7 @@ function handleMessage(sender_psid, received_message) {
     
     // Sends the response message
     callSendAPI(sender_psid, response);    
-}
+}*/ 
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
@@ -141,7 +143,7 @@ let request_body = {
     "recipient": {
       "id": sender_psid
     },
-    "message": response
+    "message": {"text" : response}
   };
 
   // Send the HTTP request to the Messenger Platform
@@ -160,6 +162,21 @@ let request_body = {
   }); 
 }
 
+function firstTrait(nlp, name) {
+  return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+}
+
+function handleMessage(sender_psid,message) {
+  // check greeting is here and is confident
+  const greeting = firstTrait(message.nlp, 'wit$greetings');
+  if (greeting && greeting.confidence > 0.8) {
+    //sendResponse('Hi there!');
+    callSendAPI(sender_psid,message);
+  } else { 
+    // default logic
+    callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
+  }
+}
 
 module.exports = {
     postwebHook: postwebHook,
