@@ -176,7 +176,7 @@ function handleMessage(sender_psid,message) {
 
 
   // check greeting is here and is confident
-  let entitiesArr = ["wit$greetings","wit$thanks","wit$bye"];
+  let entitiesArr = ["greetings","thanks","bye"];
   let entityChosen ="";
   entitiesArr.forEach((name)=>{
     let entity = firstTrait(message.nlp,name);
