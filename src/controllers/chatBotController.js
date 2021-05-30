@@ -202,7 +202,7 @@ function handleMessage(sender_psid,message) {
       callSendAPI(sender_psid,'Bye Bye');
     }
   }
-  */
+
 
 const greeting = firstTrait(message.nlp, 'wit$greetings');
 const thanks   = firstTrait(message.nlp,'wit$thanks'); 
@@ -220,7 +220,9 @@ if (greeting && greeting.confidence > 0.8) {
   // default logic
   callSendAPI(sender_psid,`Im sorry, ismail didn't teach me well to understand this!`);
 } 
+  */
 
+callSendAPI(sender_psid,message);
 
 }
 
